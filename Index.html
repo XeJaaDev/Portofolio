@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhatsApp Bot Developer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    :root {
+      --primary: #00e676;
+      --secondary: #ffeb3b;
+      --bg: #1f1c2c;
+      --card: #2c2f48;
+      --text: #fff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--bg), #3a3b5a);
+      color: var(--text);
+      padding-bottom: 80px;
+    }
+
+    header, section, footer {
+      padding: 1.5rem;
+    }
+
+    h1 span { color: var(--primary); }
+    .typed-text { color: var(--secondary); font-weight: 800; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: #1f1c2c;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    button {
+      background: var(--primary);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      color: #000;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      text-align: center;
+      line-height: 60px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+    
+    #introOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(31, 28, 44, 0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  animation: introFadeIn 0.8s ease forwards;
+  opacity: 0;
+}
+
+.intro-box {
+  text-align: center;
+  color: var(--text);
+  animation: introPop 0.8s ease forwards;
+  max-width: 90%;
+}
+
+.shield-icon {
+  font-size: 4rem;
+  margin-bottom: 1.2rem;
+  color: var(--primary);
+  filter: drop-shadow(0 0 10px var(--primary));
+}
+
+.brand-glow {
+  color: var(--primary);
+  font-weight: 800;
+  text-shadow: 0 0 10px var(--primary);
+}
+
+#introOverlay p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+#enterBtn {
+  padding: 0.9rem 2.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #00e676, #4af0ff, #7f00ff, #ff4ecd);
+  background-size: 300% 300%;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  animation: gradientGlow 6s ease infinite;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#enterBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--primary);
+}
+
+#introOverlay.fade-out {
+  animation: introFadeOut 0.6s ease forwards;
+}
+
+@keyframes introFadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes introFadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes introPop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes gradientGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+    
+    
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      padding-bottom: 3rem;
+    }
+    @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#toTop:hover {
+    background-color: #222;
+    transform: scale(1.1);
+}
+#chatBox::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chatBox::-webkit-scrollbar-track {
+  background: #2c2f48;
+}
+
+#chatBox::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}
+@media (max-width: 480px) {
+  #demo {
+    padding: 1rem;
+  }
+  
+  #userInput {
+    padding: 0.6rem;
+  }
+  
+  button {
+    padding: 0.6rem 1rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1f1c2c; display: flex; justify-content: center; align-items: center; z-index: 9999;">
+  <div style="border: 4px solid #444; border-top: 4px solid #00e676; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
+</div>
+<div id="introOverlay">
+  <div class="intro-box">
+    <div class="shield-icon">🛡️</div>
+    <h1>Selamat Datang di <span class="brand-glow">WhatsBot Dev</span></h1>
+    <p>Saya bantu kamu bangun bot WhatsApp yang powerful, AI-ready & 24/7 online.</p>
+    <button id="enterBtn" onclick="closeIntro()">Masuk ke Portfolio</button>
+  </div>
+</div>
+<div id="progressBar" style="position: fixed; top: 0; left: 0; height: 4px; background: var(--primary); width: 0%; z-index: 1000;"></div>
+
+  <header data-aos="fade-down">
+    <h1>Hi, I'm <span>WhatsBot Dev</span></h1>
+    <p>Expert in building <span class="typed-text"></span></p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  
+  <!-- Tambahkan setelah <section id="about"> -->
+  <p id="moodQuote" style="text-align:center; font-style: italic; margin-top: 2rem;"></p>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+<section id="skills" data-aos="fade-up">
+  <h2>My Skills</h2>
+  <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+    <li style="margin-bottom: 0.5rem;">✔ Node.js & JavaScript</li>
+    <li style="margin-bottom: 0.5rem;">✔ Baileys WhatsApp API</li>
+    <li style="margin-bottom: 0.5rem;">✔ RESTful API Integration</li>
+    <li style="margin-bottom: 0.5rem;">✔ MongoDB & Firebase</li>
+    <li style="margin-bottom: 0.5rem;">✔ GPT/OpenAI API</li>
+    <li style="margin-bottom: 0.5rem;">✔ Real-time Logging & Dashboards</li>
+  </ul>
+</section>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+<section id="tools" data-aos="fade-up">
+  <h2>Tools I Use</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+    <span style="background: #333; padding: 0.5rem 1rem; border-radius: 20px;">Visual Studio Code</span>
+    <span style="background: #333; padding: 0.5rem 1rem; border-radius: 20px;">Postman</span>
+    <span style="background: #333; padding: 0.5rem 1rem; border-radius: 20px;">Git & GitHub</span>
+    <span style="background: #333; padding: 0.5rem 1rem; border-radius: 20px;">Figma</span>
+    <span style="background: #333; padding: 0.5rem 1rem; border-radius: 20px;">MongoDB Compass</span>
+  </div>
+</section>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+  <section id="about" data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>I create powerful, secure, and intelligent WhatsApp bots using Node.js, Baileys, and AI APIs. I specialize in chat automation, group management tools, and custom integrations for businesses.</p>
+  </section>
+  <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+  <section id="services" data-aos="fade-up">
+  <h2>Services</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+    <div style="flex: 1 1 45%; background: #2c2f48; padding: 1rem; border-radius: 12px;">
+      <h4>Bot Deployment</h4>
+      <p>Deploy to server/VPS, auto-start, monitoring.</p>
+    </div>
+    <div style="flex: 1 1 45%; background: #2c2f48; padding: 1rem; border-radius: 12px;">
+      <h4>Maintenance</h4>
+      <p>Update, bugfix, and feature scaling as needed.</p>
+    </div>
+    <div style="flex: 1 1 45%; background: #2c2f48; padding: 1rem; border-radius: 12px;">
+      <h4>Private API Integration</h4>
+      <p>Connect your bot with payment, eCommerce, etc.</p>
+    </div>
+    <div style="flex: 1 1 45%; background: #2c2f48; padding: 1rem; border-radius: 12px;">
+      <h4>Custom Commands</h4>
+      <p>Design and build logic-based commands for your needs.</p>
+    </div>
+  </div>
+</section>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+
+  <section id="projects" data-aos="fade-up">
+    <h2>Featured Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Group Manager Bot</h3>
+        <p>Auto moderation, welcome/goodbye, anti-link, AI replies. Perfect for large communities.</p>
+      </div>
+      <div class="project-card">
+        <h3>Multi-Device Bot</h3>
+        <p>Supports WhatsApp multi-device with real-time logging, scalable for teams.</p>
+      </div>
+      <div class="project-card">
+        <h3>GPT Chat Assistant</h3>
+        <p>Conversational AI with GPT integration. Personalized, smart, and always learning.</p>
+      </div>
+      <!-- Tambahkan di projects section -->
+<div class="project-card">
+  <h3>E-Commerce Bot</h3>
+  <p>Complete shopping experience with cart system and payment gateway integration.</p>
+    </div>
+    
+    <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+    <section id="why" data-aos="fade-up">
+  <h2>Why Work With Me?</h2>
+  <ul style="margin-top: 1rem; padding-left: 1rem;">
+    <li>⚡ Fast development, delivery in days not weeks</li>
+    <li>🔒 Secure and clean code</li>
+    <li>🧠 Fully customized to your needs</li>
+    <li>📱 100% optimized for WhatsApp multi-device</li>
+    <li>❤️ Lifetime basic support</li>
+  </ul>
+</section>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+  <section id="contact" data-aos="zoom-in">
+    <h2>Contact Me</h2>
+    <p>Butuh WhatsApp Bot custom? Langsung klik tombol di bawah:</p>
+    <a href="https://wa.me/1234567890" target="_blank">
+      <button>Chat via WhatsApp</button>
+    </a>
+  </section>
+  <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+<section id="testimonials" data-aos="fade-up" style="margin: 4rem 0; text-align: center;">
+  <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">What Clients Say</h2>
+  <div id="testimonialBox" style="
+    font-style: italic;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    min-height: 50px;
+  ">
+    <!-- Isi akan diisi JS -->
+  </div>
+</section>
+  <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+  <section id="faq" data-aos="fade-up">
+  <h2>FAQ</h2>
+  <div style="margin-top: 1rem;">
+    <details style="margin-bottom: 0.8rem;">
+      <summary>Berapa lama waktu pengerjaan bot?</summary>
+      <p>Biasanya 2-5 hari tergantung fitur dan skala.</p>
+    </details>
+    <details style="margin-bottom: 0.8rem;">
+      <summary>Apakah bisa custom fitur unik?</summary>
+      <p>Tentu! Semua bot dibuat 100% custom sesuai kebutuhanmu.</p>
+    </details>
+    <details>
+      <summary>Apakah bot bisa jalan 24 jam?</summary>
+      <p>Ya, bisa di-deploy ke server cloud biar aktif nonstop.</p>
+    </details>
+  </div>
+</section>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 3rem 0;"></div>
+<section id="demo" data-aos="fade-up" style="max-width: 600px; margin: 0 auto;">
+  <h2 style="text-align: center;">Live Bot Demo</h2>
+  <div style="background: var(--card); border-radius: 15px; padding: 1rem; margin-top: 1rem;">
+    <div id="chatBox" style="
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      background: #2c2f48;
+      padding: 1rem;
+      border-radius: 10px;
+      color: white;
+      font-family: sans-serif;
+    ">
+      <!-- Chat messages will appear here -->
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+      <input type="text" id="userInput" placeholder="Ketik pesan..." style="
+        flex: 1;
+        padding: 0.8rem 0,5rem;
+        border: none;
+        border-radius: 25px;
+        background: #3a3b5a;
+        color: white;
+        outline: none;
+        font-size: 0,5rem;
+      ">
+      <button onclick="sendMessage()" style="
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 25px;
+        background: #4a4df0;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+      ">
+        Kirim
+      </button>
+    </div>
+  </div>
+</section>
+  <!-- Tambahkan sebelum <footer> untuk fitur tambahan -->
+  <div style="text-align:center; margin-top:2rem; opacity:0.8;">
+  <p id="factBox">Did you know? Your bot can send buttons too!</p>
+</div>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+<section id="stats" data-aos="fade-up">
+  <h2>Bot Impact</h2>
+  <div style="display: flex; justify-content: space-around; margin-top: 1rem;">
+    <div>
+      <h3 id="bots" style="color: var(--primary); font-size: 2rem;">0</h3>
+      <p>Custom Bots</p>
+    </div>
+    <div>
+      <h3 id="clients" style="color: var(--primary); font-size: 2rem;">0</h3>
+      <p>Happy Clients</p>
+    </div>
+    <div>
+      <h3 id="uptime" style="color: var(--primary); font-size: 2rem;">0%</h3>
+      <p>Avg. Uptime</p>
+    </div>
+  </div>
+</section>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+<section id="moto" style="text-align: center; margin-top: 0rem;" data-aos="zoom-in">
+  <blockquote style="font-style: italic; opacity: 0.8;">
+    "The best bot is the one you forget is a bot."
+  </blockquote>
+</section>
+<div style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); backdrop-filter: blur(3px); margin: 3rem 0;"></div>
+  <footer>
+    &copy; <span id="year"></span> WhatsBot Dev. All rights reserved.
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </footer>
+
+  <script>
+    AOS.init();
+    new Typed('.typed-text', {
+      strings: ['WhatsApp Bots', 'Chat Automation', 'AI Integration', 'Business Solutions'],
+      typeSpeed: 55,
+      backSpeed: 35,
+      loop: true
+    });
+  // Counter animation
+  const animateCounter = (id, end, suffix = "") => {
+    let start = 0;
+    const el = document.getElementById(id);
+    const speed = 20;
+    const increment = Math.ceil(end / 100);
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        el.textContent = end + suffix;
+        clearInterval(counter);
+      } else {
+        el.textContent = start + suffix;
+      }
+    }, speed);
+  };
+
+  // When page loads or scrolls near stats
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter("bots", 10);
+        animateCounter("clients", 7);
+        animateCounter("uptime", 72, "%");
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(document.querySelector("#stats"));
+  window.addEventListener('scroll', () => {
+  const btn = document.getElementById('toTop');
+  if (window.scrollY > 300) {
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+});
+
+  window.addEventListener('load', () => {
+    document.getElementById('loader').style.display = 'none';
+  });
+    const facts = [
+    "Your bot can send buttons too!",
+    "You can automate invoices via WhatsApp!",
+    "Multi-device bots are the future.",
+    "Bots can respond in under 1 second!",
+    "You can use GPT replies in real-time!"
+  ];
+  document.getElementById('factBox').textContent = "Did you know? " + facts[Math.floor(Math.random() * facts.length)];
+ 
+  const hour = new Date().getHours();
+  let msg = "";
+  if (hour < 12) msg = "Good morning, ready to build something amazing?";
+  else if (hour < 18) msg = "Good afternoon, keep the code flowing.";
+  else msg = "Good evening, bots never sleep.";
+  document.getElementById("moodQuote").textContent = msg;
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '?') alert("Shortcut:\n↑ Scroll Up\n↓ Scroll Down\nM: Message Me\nR: Reload");
+  });
+  // Tambahkan ke script
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (scrollTop / scrollHeight) * 100;
+  document.getElementById('progressBar').style.width = `${scrolled}%`;
+});
+const testimonials = [
+  "“Bot-nya mantap, bener-bener bantuin operasional harian!” - Dika, Owner TokoOnline",
+  "“Fast response, revisi cepet, hasilnya sesuai ekspektasi.” - Lina, Admin Sekolah",
+  "“Custom sesuai kebutuhan banget, recommended!” - Bayu, Freelance Marketer",
+  "“Bikin bot WA buat auto-reply + katalog itu game changer banget, makasih!” - Nurul, Usaha Skincare"
+];
+
+const testimonialBox = document.getElementById('testimonialBox');
+let testimonialIndex = 0;
+
+function showTestimonial(index) {
+  testimonialBox.style.opacity = 0;
+  setTimeout(() => {
+    testimonialBox.textContent = testimonials[index];
+    testimonialBox.style.opacity = 1;
+  }, 300);
+}
+const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+
+    function sanitize(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function addChat(message, isBot = false) {
+        const chatDiv = document.createElement('div');
+        chatDiv.style.margin = '0.5rem 0';
+        chatDiv.style.padding = '0.8rem 1rem';
+        chatDiv.style.borderRadius = '150px';
+        chatDiv.style.background = isBot ? '#3a3b5a' : getComputedStyle(document.documentElement).getPropertyValue('--primary');
+        chatDiv.style.color = isBot ? 'white' : 'black';
+        chatDiv.style.maxWidth = '%';
+        chatDiv.style.marginLeft = isBot ? '0' : 'auto';
+        chatDiv.innerHTML = sanitize(message);
+        
+        chatBox.appendChild(chatDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return chatDiv;
+    }
+
+async function sendMessage() {
+    const message = userInput.value.trim();
+    if(!message) return;
+
+    const userMessage = addChat(message);
+    userInput.value = '';
+    
+    const loading = addChat("Memproses...", true);
+    
+    try {
+        const response = await fetch('https://api.siputzx.my.id/api/ai/blackboxai-pro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // Tambahkan header lain jika diperlukan
+            },
+            body: JSON.stringify({
+                content: message,
+                // Tambahkan parameter lain sesuai dokumentasi API
+            })
+        });
+
+        const data = await response.json();
+        
+        if(!response.ok) {
+            throw new Error(data.message || `HTTP error! status: ${response.status}`);
+        }
+
+        loading.remove();
+        addChat(data.result || "Berikut jawaban saya:", true);
+        
+    } catch (error) {
+        loading.remove();
+        const errorMessage = error.message.includes('Failed to fetch') ? 
+            "Gagal terhubung ke server. Cek koneksi internet Anda." : 
+            "Terjadi kesalahan saat memproses permintaan";
+            
+        addChat(errorMessage, true);
+        console.error('Error:', error);
+    }
+}
+
+// First load
+showTestimonial(testimonialIndex);
+
+// Looping tiap 5 detik
+setInterval(() => {
+  testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+  showTestimonial(testimonialIndex);
+}, 5000);
+</script>
+<a href="#top" id="toTop" style="
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    display: none;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+">
+    ↑
+</a>
+<script>
+  function closeIntro() {
+    const overlay = document.getElementById('introOverlay');
+    overlay.classList.add('fade-out');
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 600);
+  }
+</script>
+</body>
+</html>
